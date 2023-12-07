@@ -1,24 +1,96 @@
 {
-    "name": "laravel/laravel",
+    "name": "tfsthiagobr98/laravel-template",
     "type": "project",
     "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "keywords": [
+        "laravel",
+        "framework",
+        "template"
+    ],
     "license": "MIT",
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/TFSThiagoBR98/filament-2fa.git",
+            "no-api": true
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/TFSThiagoBR98/filament-shield.git",
+            "no-api": true
+        }
+    ],
     "require": {
         "php": "^8.1",
-        "guzzlehttp/guzzle": "^7.2",
-        "laravel/framework": "^10.10",
-        "laravel/sanctum": "^3.3",
-        "laravel/tinker": "^2.8"
+        "afatmustafa/filamentv3-turnstile": "^1.0",
+        "akaunting/laravel-money": "^5.1",
+        "awcodes/filament-quick-create": "^3.2",
+        "awcodes/filament-table-repeater": "^2.0",
+        "awcodes/filament-versions": "^2.0",
+        "aymanalhattami/filament-slim-scrollbar": "^2.0",
+        "bavix/laravel-wallet": "^10.0",
+        "bezhansalleh/filament-shield": "dev-main",
+        "croustibat/filament-jobs-monitor": "^2.0",
+        "doctrine/dbal": "^3.7",
+        "filament/filament": "^3.0-stable",
+        "filament/spatie-laravel-media-library-plugin": "^3.1",
+        "flowframe/laravel-trend": "^0.1.5",
+        "guzzlehttp/guzzle": "^7.8",
+        "hammerstone/fast-paginate": "^1.0",
+        "hasnayeen/themes": "^3.0",
+        "kreait/laravel-firebase": "^5.5",
+        "laragear/two-factor": "^1.2",
+        "laravel-notification-channels/fcm": "^4.0",
+        "laravel/framework": "^10.33",
+        "laravel/horizon": "^5.21",
+        "laravel/octane": "^2.1",
+        "laravel/passport": "^11.10",
+        "laravel/scout": "^10.6",
+        "laravel/socialite": "^5.11",
+        "laravel/telescope": "^4.17",
+        "laravel/tinker": "^2.8",
+        "laravellegends/pt-br-validator": "^10.0",
+        "league/flysystem-aws-s3-v3": "^3.22",
+        "leandrocfe/filament-apex-charts": "^3.0",
+        "leandrocfe/filament-ptbr-form-fields": "^3.0",
+        "maatwebsite/excel": "^3.1",
+        "meilisearch/meilisearch-php": "^1.5",
+        "mercadopago/dx-php": "^3.0",
+        "mll-lab/graphql-php-scalars": "^6.2",
+        "mll-lab/laravel-graphiql": "^3.1",
+        "nuwave/lighthouse": "^6.26",
+        "owen-it/laravel-auditing": "^13.5",
+        "pusher/pusher-php-server": "^7.2",
+        "pxlrbt/filament-environment-indicator": "^2.0",
+        "pxlrbt/filament-excel": "^2.1",
+        "rawilk/filament-password-input": "^1.1",
+        "spatie/browsershot": "^3.60",
+        "spatie/image-optimizer": "^1.7",
+        "spatie/laravel-medialibrary": "^10.15",
+        "spatie/laravel-permission": "^6.1",
+        "spatie/laravel-schemaless-attributes": "^2.4",
+        "spatie/laravel-sluggable": "^3.5",
+        "staudenmeir/belongs-to-through": "^2.14",
+        "staudenmeir/eloquent-has-many-deep": "^1.19",
+        "stechstudio/filament-impersonate": "^3.5",
+        "symfony/http-client": "^6.3",
+        "symfony/mailgun-mailer": "^6.3",
+        "tfsthiagobr98/lighthouse-graphql-passport-auth": "^7.0",
+        "tfsthiagobr98/filament-2fa": "dev-main"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
-        "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.1",
-        "spatie/laravel-ignition": "^2.0"
+        "barryvdh/laravel-ide-helper": "^2.13",
+        "fakerphp/faker": "^1.23.0",
+        "laravel-lang/attributes": "^2.5",
+        "laravel-lang/http-statuses": "^3.6",
+        "laravel-lang/lang": "^13.10",
+        "laravel-lang/publisher": "^15.0",
+        "laravel/pint": "^1.13",
+        "mockery/mockery": "^1.6.6",
+        "nunomaduro/collision": "^7.10",
+        "phpunit/phpunit": "^10.4",
+        "spatie/laravel-ignition": "^2.3",
+        "vaimo/composer-patches": "^5.1"
     },
     "autoload": {
         "psr-4": {
@@ -35,7 +107,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan filament:upgrade"
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
@@ -50,6 +123,9 @@
     "extra": {
         "laravel": {
             "dont-discover": []
+        },
+        "patcher": {
+            "search": "patches"
         }
     },
     "config": {
@@ -58,7 +134,8 @@
         "sort-packages": true,
         "allow-plugins": {
             "pestphp/pest-plugin": true,
-            "php-http/discovery": true
+            "php-http/discovery": true,
+            "vaimo/composer-patches": true
         }
     },
     "minimum-stability": "stable",
