@@ -9,6 +9,7 @@ export default {
         './resources/views/vendor/filament-widgets/**/*.blade.php',
         './vendor/filament/**/*.blade.php',
         './vendor/awcodes/filament-quick-create/resources/**/*.blade.php',
-        './vendor/awcodes/filament-table-repeater/resources/**/*.blade.php'
+        './vendor/awcodes/filament-table-repeater/resources/**/*.blade.php',
+        './vendor/awcodes/filament-versions/resources/**/*.blade.php',
     ],
 }

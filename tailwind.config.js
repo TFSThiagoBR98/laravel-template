@@ -1,6 +1,5 @@
 import forms from '@tailwindcss/forms';
 import typography from '@tailwindcss/typography';
-import twelements from 'tw-elements/dist/plugin';
 import preset from './vendor/filament/filament/tailwind.config.preset'
 
 /** @type {import('tailwindcss').Config} */
@@ -17,12 +16,11 @@ export default {
         './resources/views/vendor/filament-panels/**/*.blade.php',
         './resources/views/vendor/filament-widgets/**/*.blade.php',
         './vendor/awcodes/filament-quick-create/resources/**/*.blade.php',
-        './vendor/awcodes/filament-table-repeater/resources/**/*.blade.php'
+        './vendor/awcodes/filament-table-repeater/resources/**/*.blade.php',
+        './vendor/awcodes/filament-versions/resources/**/*.blade.php'
     ],
-
     plugins: [
         forms,
         typography,
-        twelements,
     ],
 };

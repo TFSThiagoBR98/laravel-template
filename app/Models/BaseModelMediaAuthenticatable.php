@@ -18,7 +18,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
-use Joselfonseca\LighthouseGraphQLPassport\HasSocialLogin;
+use TFSThiagoBR98\LighthouseGraphQLPassport\HasSocialLogin;
 use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
 use Laragear\TwoFactor\TwoFactorAuthentication;
 use Laravel\Passport\HasApiTokens;

@@ -8,7 +8,6 @@ use App\Scopes\EmployeeScope;
 use App\Scopes\CompanyScope;
 use App\Scopes\UserScope;
 use App\Enums;
-use App\Traits\HasEmployeeScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
@@ -95,8 +94,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  */
 class User extends BaseModelMediaAuthenticatable
 {
-    use HasEmployeeScope;
-
     /**
      * The table associated with the model.
      */

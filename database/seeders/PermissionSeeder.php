@@ -55,18 +55,6 @@ class PermissionSeeder extends Seeder
                     ]
                 ),
                 BasePolicy::getPermissions(
-                    Media::class,
-                    [
-                        'viewAny',
-                        'view',
-                        'create',
-                        'update',
-                        'delete',
-                        'restore',
-                        'forceDelete'
-                    ]
-                ),
-                BasePolicy::getPermissions(
                     User::class,
                     [
                         'viewAny',
@@ -212,7 +200,7 @@ class PermissionSeeder extends Seeder
             $this->command->info("Register web permissions for $role");
             /** @var Role */
             $rol = Role::findOrCreate($role);
-            $rol->givePermissionTo(BasePolicy::findOrCreatePermission($permissions));
+            $rol->syncPermissions(BasePolicy::findOrCreatePermission($permissions));
         }
     }
 

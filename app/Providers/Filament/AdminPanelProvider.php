@@ -3,6 +3,8 @@
 namespace App\Providers\Filament;
 
 use Awcodes\FilamentQuickCreate\QuickCreatePlugin;
+use Awcodes\FilamentVersions\VersionsPlugin;
+use Awcodes\FilamentVersions\VersionsWidget;
 use BezhanSalleh\FilamentShield\FilamentShieldPlugin;
 use Croustibat\FilamentJobsMonitor\FilamentJobsMonitorPlugin;
 use Filament\Http\Middleware\Authenticate;
@@ -74,11 +76,15 @@ class AdminPanelProvider extends PanelProvider
                 Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
-            ->widgets([])
+            ->widgets([
+                VersionsWidget::class,
+            ])
             ->plugins([
                 FilamentTwoFactorPlugin::make(),
-                EnvironmentIndicatorPlugin::make(),
+                EnvironmentIndicatorPlugin::make()
+                    ->visible(true),
                 ThemesPlugin::make(),
+                VersionsPlugin::make(),
                 QuickCreatePlugin::make(),
                 FilamentShieldPlugin::make(),
                 FilamentJobsMonitorPlugin::make()

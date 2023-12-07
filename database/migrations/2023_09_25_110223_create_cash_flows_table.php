@@ -51,13 +51,6 @@ return new class extends Migration
                 ->constrained(Model::TABLE, Model::ATTRIBUTE_ID)
                 ->cascadeOnDelete();
         });
-
-        Schema::table(PaymentChargeBack::TABLE, function (Blueprint $table) {
-            $table->foreignIdFor(Model::class, PaymentChargeBack::ATTRIBUTE_FK_CASH_FLOW)
-                ->nullable()
-                ->constrained(Model::TABLE, Model::ATTRIBUTE_ID)
-                ->cascadeOnDelete();
-        });
     }
 
     /**
