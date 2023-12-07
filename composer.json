@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.2",
         "afatmustafa/filamentv3-turnstile": "^1.0",
         "akaunting/laravel-money": "^5.1",
         "awcodes/filament-quick-create": "^3.2",
@@ -70,13 +70,14 @@
         "spatie/laravel-permission": "^6.1",
         "spatie/laravel-schemaless-attributes": "^2.4",
         "spatie/laravel-sluggable": "^3.5",
+        "stancl/tenancy": "^3.7",
         "staudenmeir/belongs-to-through": "^2.14",
         "staudenmeir/eloquent-has-many-deep": "^1.19",
         "stechstudio/filament-impersonate": "^3.5",
         "symfony/http-client": "^6.3",
         "symfony/mailgun-mailer": "^6.3",
-        "tfsthiagobr98/lighthouse-graphql-passport-auth": "^7.0",
-        "tfsthiagobr98/filament-2fa": "dev-main"
+        "tfsthiagobr98/filament-2fa": "dev-main",
+        "tfsthiagobr98/lighthouse-graphql-passport-auth": "^7.0"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.13",
