@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/payments/success/mp', \App\Http\Controllers\MercadoPagoController::class.'@mercadoPagoSuccess')
+    ->name('payments.success.mercadopago');
+Route::get('/payments/pending/mp', \App\Http\Controllers\MercadoPagoController::class.'@mercadoPagoPending')
+    ->name('payments.pending.mercadopago');
+Route::get('/payments/error/mp', \App\Http\Controllers\MercadoPagoController::class.'@mercadoPagoError')
+    ->name('payments.error.mercadopago');
+

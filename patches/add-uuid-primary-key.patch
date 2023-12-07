@@ -1,0 +1,71 @@
+Add UUID Primary Key
+
+@package laravel/framework
+
+diff --git a/src/Illuminate/Database/Eloquent/Concerns/HasUniqueIds.php b/src/Illuminate/Database/Eloquent/Concerns/HasUniqueIds.php
+index 8d769b2829..b0502860d1 100644
+--- a/src/Illuminate/Database/Eloquent/Concerns/HasUniqueIds.php
++++ b/src/Illuminate/Database/Eloquent/Concerns/HasUniqueIds.php
+@@ -34,24 +34,4 @@ public function setUniqueIds()
+             }
+         }
+     }
+-
+-    /**
+-     * Generate a new key for the model.
+-     *
+-     * @return string
+-     */
+-    public function newUniqueId()
+-    {
+-        return null;
+-    }
+-
+-    /**
+-     * Get the columns that should receive a unique identifier.
+-     *
+-     * @return array
+-     */
+-    public function uniqueIds()
+-    {
+-        return [];
+-    }
+ }
+diff --git a/src/Illuminate/Database/Eloquent/Model.php b/src/Illuminate/Database/Eloquent/Model.php
+index dab2dcf21d..d17f35a567 100644
+--- a/src/Illuminate/Database/Eloquent/Model.php
++++ b/src/Illuminate/Database/Eloquent/Model.php
+@@ -31,6 +31,7 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
+         Concerns\HasRelationships,
+         Concerns\HasTimestamps,
+         Concerns\HasUniqueIds,
++        Concerns\HasUlids,
+         Concerns\HidesAttributes,
+         Concerns\GuardsAttributes,
+         ForwardsCalls;
+@@ -61,14 +62,14 @@ abstract class Model implements Arrayable, ArrayAccess, CanBeEscapedWhenCastToSt
+      *
+      * @var string
+      */
+-    protected $keyType = 'int';
++    protected $keyType = 'string';
+
+     /**
+      * Indicates if the IDs are auto-incrementing.
+      *
+      * @var bool
+      */
+-    public $incrementing = true;
++    public $incrementing = false;
+
+     /**
+      * The relations to eager load on every query.
+@@ -294,6 +295,8 @@ protected static function bootTraits()
+
+         static::$traitInitializers[$class] = [];
+
++        static::$traitInitializers[$class][] = 'initializeHasUlids';
++
+         foreach (class_uses_recursive($class) as $trait) {
+             $method = 'boot'.class_basename($trait);
+

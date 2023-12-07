@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'mercado_pago' => [
+        'public_key' => env('MERCADO_PAGO_PUBLIC_KEY'),
+        'access_token' => env('MERCADO_PAGO_ACCESS_TOKEN'),
+        'statement_descriptor' => env('MERCADO_PAGO_STATEMENT_DESCRIPTOR', 'Minha Loja')
+    ],
+
 ];

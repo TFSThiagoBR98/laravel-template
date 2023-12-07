@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .quebraPagina {
+        page-break-after: always;
+        page-break-inside: avoid;
+    }
+
+    pagebreak {
+        page-break-after: always;
+        page-break-inside: avoid;
+    }
+}
+
+.report-field-header {
+    @apply bg-black text-white;
+}
+
+.base-header {
+}
+
+@config './tailwind.config.js';

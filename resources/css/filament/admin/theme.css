@@ -1,0 +1,99 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+@import '../../../../vendor/awcodes/filament-table-repeater/resources/css/plugin.css';
+
+@config './tailwind.config.js';
+
+.fi-body {
+    @apply bg-gray-100 dark:bg-gray-900 !important;
+}
+
+/* .fi-sidebar {
+    @apply p-2 !important;
+} */
+
+.fi-sidebar-header {
+    @apply justify-center relative;
+}
+
+.fi-sidebar-header::before {
+    @apply pointer-events-none absolute inset-x-0 mx-auto h-px w-full bg-gradient-to-r from-gray-200 via-primary-400 to-gray-200 dark:from-gray-700 dark:via-primary-400 dark:to-gray-700;
+    content: '';
+    z-index: 1;
+    bottom: -1px;
+}
+
+.fi-sidebar-item-active a {
+    @apply bg-primary-600 dark:bg-primary-950/70 hover:bg-primary-600 dark:hover:bg-primary-950/70 text-white dark:text-white;
+}
+
+.fi-sidebar-item-active .fi-sidebar-item-label {
+    @apply text-white dark:text-white;
+}
+
+.fi-sidebar-item-active svg {
+    @apply text-white dark:text-white;
+}
+
+.fi-sidebar-item:not(.fi-sidebar-item-active) a {
+    @apply dark:text-gray-400 hover:bg-primary-100 dark:hover:bg-primary-800/50 dark:hover:text-white;
+}
+
+.fi-sidebar-item:not(.fi-sidebar-item-active):hover a svg {
+    @apply dark:text-white;
+}
+
+.fi-main-ctn {
+    @apply !h-screen;
+}
+
+/* .fi-topbar {
+    @apply relative;
+}
+
+.fi-topbar nav {
+    @apply bg-primary-50 dark:bg-gray-950 ring-0 shadow-none;
+} */
+
+.fi-main {
+    @apply !max-w-full !overflow-y-auto flex-grow;
+}
+
+.fi-wi-stats-overview-stat {
+    @apply shadow-none ring-2 ring-primary-50 dark:!ring-gray-950 border border-primary-100 dark:border-gray-900;
+}
+
+/* .fi-section {
+    @apply ring-2 ring-primary-50 dark:!ring-gray-950 border border-primary-100 dark:border-gray-900 shadow-none;
+} */
+
+.fi-ta-ctn {
+    @apply ring-2 ring-primary-50 dark:!ring-gray-950 border border-primary-100 dark:border-gray-900 shadow-none;
+}
+
+.fi-sidebar-item:not(.fi-sidebar-item-active) .fi-sidebar-item-icon {
+    @apply text-gray-900 dark:text-gray-200 !important;
+}
+
+.fi-sidebar-item:not(.fi-sidebar-item-active) .fi-sidebar-item-label {
+    @apply text-gray-900 dark:text-gray-200 !important;
+}
+
+.fi-sidebar-item-icon {
+    @apply h-5 w-5 !important;
+}
+
+.fi-sidebar-item-label {
+    @apply text-sm !important;
+}
+
+.fi-sidebar {
+    @apply bg-white dark:bg-gray-800 dark:border-gray-700 !important;
+}
+
+.fi-sidebar-nav {
+    @apply bg-white dark:bg-gray-800 dark:border-gray-700 !important;
+}
+
+.fi-sidebar-open {
+    @apply shadow-2xl;
+}
