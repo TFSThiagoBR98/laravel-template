@@ -9,6 +9,7 @@ use App\Scopes\CompanyScope;
 use App\Scopes\UserScope;
 use App\Enums;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasManyThrough;
@@ -91,6 +92,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @method static Builder|User withoutTrashed()
  * @method static Builder|User whereTaxId($value)
  * @mixin \Eloquent
+ * @mixin IdeHelperUser
  */
 class User extends BaseModelMediaAuthenticatable
 {
@@ -164,6 +166,11 @@ class User extends BaseModelMediaAuthenticatable
     {
         return $this->hasMany(Employee::class, self::FOREIGN_KEY, self::ATTRIBUTE_ID)
             ->withoutGlobalScopes([CompanyScope::class, UserScope::class, EmployeeScope::class]);
+    }
+
+    public function companies(): BelongsToMany
+    {
+        return $this->belongsToMany(Company::class, Employee::TABLE, User::FOREIGN_KEY, Company::FOREIGN_KEY);
     }
 
     /**

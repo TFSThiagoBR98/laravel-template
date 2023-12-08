@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Contracts\CompanyOwned;
 use App\Enums;
 use App\Traits\BelongToCashFlow;
-use App\Traits\BelongToCompany;
+use App\Concerns\HasCompany;
 use App\Traits\BelongToCreator;
 
 /**
@@ -52,10 +52,11 @@ use App\Traits\BelongToCreator;
  * @method static \Illuminate\Database\Eloquent\Builder|CashFlowTransaction withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|CashFlowTransaction withoutTrashed()
  * @mixin \Eloquent
+ * @mixin IdeHelperCashFlowTransaction
  */
 class CashFlowTransaction extends BaseModelMedia implements CompanyOwned
 {
-    use BelongToCompany;
+    use HasCompany;
     use BelongToCreator;
     use BelongToCashFlow;
 

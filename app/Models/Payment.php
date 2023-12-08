@@ -4,7 +4,7 @@ namespace App\Models;
 
 use App\Contracts\CompanyOwned;
 use App\Enums;
-use App\Traits\BelongToCompany;
+use App\Concerns\HasCompany;
 use App\Traits\BelongToCreator;
 use App\Traits\BelongToPaymentMethod;
 use App\Traits\BelongToCashFlow;
@@ -79,10 +79,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  * @method static \Illuminate\Database\Eloquent\Builder|Payment withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Payment withoutTrashed()
  * @mixin \Eloquent
+ * @mixin IdeHelperPayment
  */
 class Payment extends BaseModelMedia implements CompanyOwned
 {
-    use BelongToCompany;
+    use HasCompany;
     use BelongToPaymentMethod;
     use BelongToCreator;
     use BelongToCashFlow;

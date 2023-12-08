@@ -48,6 +48,7 @@ use Illuminate\Support\Facades\Auth;
  * @method static Builder|Company withoutTrashed()
  * @method static Builder|Company whereTaxId($value)
  * @mixin \Eloquent
+ * @mixin IdeHelperCompany
  */
 class Company extends BaseModelMedia
 {

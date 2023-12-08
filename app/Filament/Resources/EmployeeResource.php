@@ -23,9 +23,9 @@ class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
 
-    protected static ?string $label = "Membro de Empresa";
+    protected static ?string $label = "Membro da Empresa";
 
-    protected static ?string $pluralLabel = "Membros de Empresa";
+    protected static ?string $pluralLabel = "Membros da Empresa";
 
     protected static ?string $navigationIcon = 'icon-business-card';
 
@@ -151,19 +151,6 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('role')
                     ->label('Cargo')
                     ->searchable()
-                    ->enum([
-                        'super-admin' => 'Administrador Total',
-                        'admin' => 'Administrador do Sistema',
-                        'owner' => 'Administrador',
-                        'viewer_finances' => 'Visualizador Financeiro',
-                        'viewer' => 'Visualizador',
-                        'manager' => 'Gerente',
-                        'attendent' => 'Atendente',
-                        'finances' => 'Financeiro',
-                        'tow_driver' => 'Reboquista',
-                        'checker' => 'Porteiro',
-                        'minimal' => 'Minimo',
-                    ])
                     ->badge(),
                 Tables\Columns\TextColumn::make('status')
                     ->label('Estado')

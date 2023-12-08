@@ -31,11 +31,6 @@ class PaymentMethodResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
-                    ->label('Empresa')
-                    ->default(Auth::user()->employees->first()?->company?->{Company::ATTRIBUTE_ID})
-                    ->relationship('company', 'name')
-                    ->required(),
                 Forms\Components\TextInput::make('name')
                     ->label('Nome')
                     ->required(),
@@ -57,10 +52,6 @@ class PaymentMethodResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('company.name')
-                    ->label('Empresa')
-                    ->toggleable()
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('name')
                     ->label('Nome')
                     ->searchable(),

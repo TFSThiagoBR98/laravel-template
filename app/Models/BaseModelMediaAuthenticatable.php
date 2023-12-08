@@ -12,6 +12,7 @@ use Filament\Panel;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\MustVerifyEmail as HasVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
@@ -48,6 +49,7 @@ abstract class BaseModelMediaAuthenticatable extends BaseModelMedia implements
     use HasVerifyEmail;
     use HasWallets;
     use Notifiable;
+    use AuthenticationLoggable;
     use TwoFactorAuthentication;
 
     public function canAccessPanel(Panel $panel): bool

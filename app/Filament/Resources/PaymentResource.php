@@ -37,11 +37,6 @@ class PaymentResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
-                    ->label('Empresa')
-                    ->default(Auth::user()->employees->first()?->company?->{Company::ATTRIBUTE_ID})
-                    ->relationship('company', 'name')
-                    ->required(),
                 Forms\Components\Select::make('creator_id')
                     ->label('Usuário')
                     ->native(false)

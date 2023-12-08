@@ -5,7 +5,7 @@ namespace App\Models;
 use App\Contracts\CompanyOwned;
 use App\Enums;
 use App\Enums\CashFlowStatus;
-use App\Traits\BelongToCompany;
+use App\Concerns\HasCompany;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Builder;
@@ -70,10 +70,11 @@ use Symfony\Component\HttpFoundation\StreamedResponse;
  * @method static Builder|CashFlow withTrashed()
  * @method static Builder|CashFlow withoutTrashed()
  * @mixin \Eloquent
+ * @mixin IdeHelperCashFlow
  */
 class CashFlow extends BaseModelMedia implements CompanyOwned
 {
-    use BelongToCompany;
+    use HasCompany;
 
     /**
      * The table associated with the model.

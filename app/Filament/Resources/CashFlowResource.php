@@ -37,11 +37,6 @@ class CashFlowResource extends Resource
     public static function openFlowForm(): array
     {
         return [
-            Forms\Components\Select::make('company_id')
-                ->label('Empresa')
-                ->default(Auth::user()->employees->first()?->company?->{Company::ATTRIBUTE_ID})
-                ->relationship('company', 'name')
-                ->required(),
             Forms\Components\Hidden::make('employee_open_id')
                 ->label('Aberto por')
                 ->default(Auth::id())
@@ -97,11 +92,6 @@ class CashFlowResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('company_id')
-                    ->label('Empresa')
-                    ->default(Auth::user()->employees->first()?->company?->{Company::ATTRIBUTE_ID})
-                    ->relationship('company', 'name')
-                    ->required(),
                 Forms\Components\Select::make('employee_open_id')
                     ->label('Aberto por')
                     ->default(Auth::id())
@@ -139,10 +129,6 @@ class CashFlowResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('company.name')
-                    ->label('Empresa')
-                    ->toggleable()
-                    ->searchable(),
                 Tables\Columns\TextColumn::make('openedBy.name')
                     ->label('Aberto por')
                     ->searchable(),

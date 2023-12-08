@@ -11,16 +11,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 trait BelongToUser
 {
     /**
-     * Boot the soft deleting trait for a model.
-     *
-     * @return void
-     */
-    public static function bootBelongToUser()
-    {
-        static::addGlobalScope(new UserScope());
-    }
-
-    /**
      * Get user of model
      *
      * @return BelongsTo

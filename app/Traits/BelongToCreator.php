@@ -8,10 +8,10 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
- * Track Employee Creator of the Model
+ * Track User Creator of the Model
  *
  * @property string $creator_id
- * @property Employee $creator
+ * @property User $creator
  *
  * @inheritDoc /App/Models/BaseModelMedia
  * @inherits /App/Models/BaseModelMedia

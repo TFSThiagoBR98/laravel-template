@@ -7,7 +7,7 @@ use App\Contracts\UserOwned;
 use App\Enums;
 use App\Events\Employee\EmployeeCreated;
 use App\Events\Employee\EmployeeUpdated;
-use App\Traits\BelongToCompany;
+use App\Concerns\HasCompany;
 use App\Traits\BelongToUser;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -52,10 +52,11 @@ use Spatie\Permission\Traits\HasRoles;
  * @method static \Illuminate\Database\Eloquent\Builder|Employee withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|Employee withoutTrashed()
  * @mixin \Eloquent
+ * @mixin IdeHelperEmployee
  */
 class Employee extends BaseModelMedia implements CompanyOwned, UserOwned
 {
-    use BelongToCompany;
+    use HasCompany;
     use BelongToUser;
     use HasRoles;
 

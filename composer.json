@@ -54,6 +54,7 @@
         "leandrocfe/filament-apex-charts": "^3.0",
         "leandrocfe/filament-ptbr-form-fields": "^3.0",
         "maatwebsite/excel": "^3.1",
+        "marjose123/filament-webhook-server": "^2.0",
         "meilisearch/meilisearch-php": "^1.5",
         "mercadopago/dx-php": "^3.0",
         "mll-lab/graphql-php-scalars": "^6.2",
@@ -63,6 +64,7 @@
         "pusher/pusher-php-server": "^7.2",
         "pxlrbt/filament-environment-indicator": "^2.0",
         "pxlrbt/filament-excel": "^2.1",
+        "rappasoft/laravel-authentication-log": "^3.0",
         "rawilk/filament-password-input": "^1.1",
         "spatie/browsershot": "^3.60",
         "spatie/image-optimizer": "^1.7",
@@ -76,6 +78,7 @@
         "stechstudio/filament-impersonate": "^3.5",
         "symfony/http-client": "^6.3",
         "symfony/mailgun-mailer": "^6.3",
+        "tapp/filament-authentication-log": "^3.0",
         "tfsthiagobr98/filament-2fa": "dev-main",
         "tfsthiagobr98/lighthouse-graphql-passport-auth": "^7.0"
     },

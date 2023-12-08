@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
+use App\Concerns\HasCompany;
 use App\Contracts\CompanyOwned;
 use App\Enums;
-use App\Traits\BelongToCompany;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 /**
@@ -62,10 +62,11 @@ use Illuminate\Database\Eloquent\Relations\MorphTo;
  * @method static \Illuminate\Database\Eloquent\Builder|AcquirerTransaction withTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder|AcquirerTransaction withoutTrashed()
  * @mixin \Eloquent
+ * @mixin IdeHelperAcquirerTransaction
  */
 class AcquirerTransaction extends BaseModelMedia implements CompanyOwned
 {
-    use BelongToCompany;
+    use HasCompany;
 
     /**
      * The table associated with the model.

@@ -42,6 +42,7 @@ use OwenIt\Auditing\Models\Audit as BaseAudit;
  * @method static \Illuminate\Database\Eloquent\Builder|Audit whereUserId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Audit whereUserType($value)
  * @mixin \Eloquent
+ * @mixin IdeHelperAudit
  */
 class Audit extends BaseAudit
 {
