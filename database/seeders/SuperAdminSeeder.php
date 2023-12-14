@@ -27,7 +27,7 @@ class SuperAdminSeeder extends Seeder
             'email' => "admin@tfs.dev.br",
         ], [
             'name' => "Administração",
-            'tax_id' => '032.373.180-51',
+            'tax_id' => '03237318051',
             'activated_at' => Carbon::now(),
             'email_verified_at' => Carbon::now(),
             'password' => Hash::make('password'),
@@ -56,6 +56,7 @@ class SuperAdminSeeder extends Seeder
                 ],
             ],
         ]);
+        $company->createDomain('teste.localhost');
 
         Models\Employee::firstOrCreate([
             Models\Employee::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
@@ -65,6 +66,37 @@ class SuperAdminSeeder extends Seeder
             'status' => 'active',
         ]);
 
+        $company2 = Models\Company::firstOrCreate([
+            Models\Company::ATTRIBUTE_NAME => 'Empresa de Teste 02 Ltda.',
+        ], [
+            Models\Company::ATTRIBUTE_TAX_ID => '75.594.841/0002-73',
+            Models\Company::ATTRIBUTE_STATUS => GenericStatus::Active,
+            Models\Company::ATTRIBUTE_VISIBLE_TO_CLIENT => true,
+            Models\Company::ATTRIBUTE_EXTRA_ATTRIBUTES => [
+                'address' => [
+                    'address' => 'Rua Morro da Pedra',
+                    'number' => '10',
+                    'complement' => '',
+                    'reference_point' => '',
+                    'neighborhood' => 'Vilar dos Teles',
+                    'city' => 'São João de Meriti',
+                    'state' => 'RJ',
+                    'country' => 'BR',
+                    'postal_code' => '25560-371',
+                    'latitude' => '0.0',
+                    'longitude' => '0.0',
+                ],
+            ],
+        ]);
+        $company2->createDomain('teste2.localhost');
+
+        Models\Employee::firstOrCreate([
+            Models\Employee::ATTRIBUTE_FK_COMPANY => $company2->{Models\Company::ATTRIBUTE_ID},
+            Models\Employee::ATTRIBUTE_FK_USER => $admin->{Models\User::ATTRIBUTE_ID},
+        ], [
+            'role' => 'super-admin',
+            'status' => 'active',
+        ]);
 
         $companyId = $company->id;
 
@@ -74,49 +106,42 @@ class SuperAdminSeeder extends Seeder
             Models\PaymentMethod::ATTRIBUTE_NAME => 'Dinheiro',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'Cartão de Crédito',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'Cartão de Débito',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'TED/DOC',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'PIX',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'Boleto',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         Models\PaymentMethod::firstOrCreate([
             Models\PaymentMethod::ATTRIBUTE_NAME => 'Outro',
         ], [
             Models\PaymentMethod::ATTRIBUTE_STATUS => 'active',
-            Models\PaymentMethod::ATTRIBUTE_FK_COMPANY => $company->{Models\Company::ATTRIBUTE_ID},
         ]);
 
         DB::table('oauth_clients')->insertOrIgnore([

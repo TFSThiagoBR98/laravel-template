@@ -11,6 +11,7 @@ use Laravel\Scout\Searchable;
 use OwenIt\Auditing\Auditable as HasAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\MediaLibrary\MediaCollections\Models\Media as BaseMedia;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * App\Models\Media
@@ -78,6 +79,7 @@ class Media extends BaseMedia implements Responsable, Htmlable, Attachable, Audi
     use HasFactory;
     use HasAuditable;
     use Searchable;
+    use CentralConnection;
 
     public const ATTRIBUTE_CREATED_AT = Model::CREATED_AT;
     public const ATTRIBUTE_UPDATED_AT = Model::UPDATED_AT;

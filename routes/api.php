@@ -14,4 +14,3 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/payments/notify/mercadopago', \App\Http\Controllers\WebHookController::class.'@mercadoPagoEvent')->name('payments.notify.mercadopago');

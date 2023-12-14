@@ -19,6 +19,7 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 use TFSThiagoBR98\LighthouseGraphQLPassport\HasSocialLogin;
 use Laragear\TwoFactor\Contracts\TwoFactorAuthenticatable;
 use Laragear\TwoFactor\TwoFactorAuthentication;
@@ -51,6 +52,7 @@ abstract class BaseModelMediaAuthenticatable extends BaseModelMedia implements
     use Notifiable;
     use AuthenticationLoggable;
     use TwoFactorAuthentication;
+    use CentralConnection;
 
     public function canAccessPanel(Panel $panel): bool
     {

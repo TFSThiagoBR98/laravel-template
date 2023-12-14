@@ -94,6 +94,20 @@ class CompanyResource extends Resource
                             ])
                             ->required(),
                     ]),
+                Forms\Components\Section::make()
+                    ->schema([
+                        Forms\Components\Placeholder::make('Domínios e Bancos de Dados'),
+                        Forms\Components\Repeater::make('domains')
+                            ->label('Domínio')
+                            ->relationship()
+                            ->defaultItems(0)
+                            ->schema([
+                                Forms\Components\TextInput::make('domain')
+                                    ->label('Nome do Host')
+                                    ->required(),
+                            ])
+                            ->disableLabel(),
+                    ]),
             ]);
     }
 

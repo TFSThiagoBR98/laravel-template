@@ -29,10 +29,6 @@ return new class extends Migration
             $table->timestampsTz(6);
             $table->softDeletesTz(Model::ATTRIBUTE_DELETED_AT, 6);
 
-            $table->foreignIdFor(Company::class, Model::ATTRIBUTE_FK_COMPANY)
-                ->constrained(Company::TABLE, Company::ATTRIBUTE_ID)
-                ->cascadeOnDelete();
-
             $table->foreignIdFor(User::class, Model::ATTRIBUTE_FK_CREATOR)
                 ->nullable()
                 ->constrained(User::TABLE, User::ATTRIBUTE_ID)

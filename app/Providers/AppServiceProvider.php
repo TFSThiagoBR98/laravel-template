@@ -5,6 +5,7 @@ namespace App\Providers;
 use Akaunting\Money\Currency;
 use Akaunting\Money\Money as AkauntingMoney;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Resources\Resource;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -46,6 +47,8 @@ class AppServiceProvider extends ServiceProvider
 
             return preg_match('/^[^(\|\]~`!%#¨^&*=\$\@};:+\"\”\“\/\[\\\\\{\}?><’)]*$/u', $value) > 0;
         });
+
+        Resource::scopeToTenant(false);
 
         Str::macro('masker', function (string $val, string $mask) {
             $maskared = '';

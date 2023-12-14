@@ -9,7 +9,10 @@ use App\Events\Employee\EmployeeCreated;
 use App\Events\Employee\EmployeeUpdated;
 use App\Concerns\HasCompany;
 use App\Traits\BelongToUser;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Support\Facades\Schema;
 use Spatie\Permission\Traits\HasRoles;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * Model Employee
@@ -59,6 +62,7 @@ class Employee extends BaseModelMedia implements CompanyOwned, UserOwned
     use HasCompany;
     use BelongToUser;
     use HasRoles;
+    use CentralConnection;
 
     /**
      * Set Permission Guard Name
@@ -148,5 +152,20 @@ class Employee extends BaseModelMedia implements CompanyOwned, UserOwned
             ->where(self::ATTRIBUTE_FK_COMPANY, $companyId)
             ->where(self::ATTRIBUTE_FK_USER, $userId)
             ->first();
+    }
+
+    public function hasCompanyColumn(): bool
+    {
+        return Schema::hasColumn($this->getModel()->getTable(), $this->getCompanyColumnName());
+    }
+
+    /**
+     * Get company of model
+     *
+     * @return BelongsTo
+     */
+    public function company(): BelongsTo
+    {
+        return $this->belongsTo(Company::class, $this->getCompanyColumnName());
     }
 }

@@ -19,8 +19,8 @@ class AssignRoleToUser
      */
     public function handle(EmployeeCreated $event): void
     {
-        $user = $event->getModel()->user;
+        //$user = $event->getModel()->user;
         $event->getModel()->assignRole($event->getModel()->role);
-        $user->assignRole($event->getModel()->role);
+        //$user->assignRole($event->getModel()->role);
     }
 }

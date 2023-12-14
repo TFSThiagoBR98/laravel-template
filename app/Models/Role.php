@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Auditable as HasAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Permission\Models\Role as SpatieRole;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * App\Models\Role
@@ -37,6 +38,7 @@ class Role extends SpatieRole implements Auditable
 {
     use HasFactory;
     use HasAuditable;
+    use CentralConnection;
 
     /**
      * The "type" of the primary key ID.

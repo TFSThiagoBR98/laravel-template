@@ -112,16 +112,7 @@ abstract class BasePolicy
         // Check if company owned model
         if ($companyOwned) {
             /** @var Company */
-            $company = null;
-            if ($model !== null) { // Fetch the company from the model
-                /** @var Company */
-                $company = $model->company;
-            } else { // Fetch the company from args
-                if (($args[Company::FOREIGN_KEY] ?? null) !== null) {
-                    /** @var Company|null */
-                    $company = Company::find($args[Company::FOREIGN_KEY]);
-                }
-            }
+            $company = tenancy()->model();
 
             if ($company !== null) { // Check if company exist
                 $employee = Employee::getEmployeeByCompanyIdUserId($company->{Company::ATTRIBUTE_ID}, $user->{User::ATTRIBUTE_ID});

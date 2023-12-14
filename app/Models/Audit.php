@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use OwenIt\Auditing\Models\Audit as BaseAudit;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * App\Models\Audit
@@ -46,6 +47,8 @@ use OwenIt\Auditing\Models\Audit as BaseAudit;
  */
 class Audit extends BaseAudit
 {
+    use CentralConnection;
+
     public const ATTRIBUTE_CREATED_AT = Model::CREATED_AT;
     public const ATTRIBUTE_UPDATED_AT = Model::UPDATED_AT;
 

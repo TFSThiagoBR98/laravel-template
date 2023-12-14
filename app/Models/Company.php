@@ -6,8 +6,6 @@ namespace App\Models;
 
 use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use App\Enums;
-use App\Scopes\CompanyScope;
-use App\Scopes\UserScope;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -19,6 +17,7 @@ use Stancl\Tenancy\Database\Concerns\HasDataColumn;
 use Stancl\Tenancy\Database\Concerns\HasInternalKeys;
 use Stancl\Tenancy\Database\Concerns\TenantRun;
 use Stancl\Tenancy\Database\Concerns\InvalidatesResolverCache;
+use Stancl\Tenancy\Events;
 
 /**
  * Model Company
@@ -66,6 +65,7 @@ class Company extends BaseModelMedia implements TenantWithDatabase
     use HasInternalKeys;
     use TenantRun;
     use InvalidatesResolverCache;
+    use HasDataColumn;
 
     /**
      * The table associated with the model.
@@ -126,6 +126,17 @@ class Company extends BaseModelMedia implements TenantWithDatabase
         self::ATTRIBUTE_STATUS => Enums\GenericStatus::class,
     ];
 
+    protected $dispatchesEvents = [
+        'saving' => Events\SavingTenant::class,
+        'saved' => Events\TenantSaved::class,
+        'creating' => Events\CreatingTenant::class,
+        'created' => Events\TenantCreated::class,
+        'updating' => Events\UpdatingTenant::class,
+        'updated' => Events\TenantUpdated::class,
+        'deleting' => Events\DeletingTenant::class,
+        'deleted' => Events\TenantDeleted::class,
+    ];
+
     public function getTenantKeyName(): string
     {
         return 'id';
@@ -155,8 +166,19 @@ class Company extends BaseModelMedia implements TenantWithDatabase
     public function members(): HasMany
     {
         return $this->employees()
-            ->withoutGlobalScope(CompanyScope::class)
-            ->withoutGlobalScope(UserScope::class);
+            ->withoutGlobalScope('company');
+    }
+
+    public static function getCustomColumns(): array
+    {
+        return [
+            self::ATTRIBUTE_ID,
+            self::ATTRIBUTE_NAME,
+            self::ATTRIBUTE_TAX_ID,
+            self::ATTRIBUTE_VISIBLE_TO_CLIENT,
+            self::ATTRIBUTE_STATUS,
+            self::ATTRIBUTE_EXTRA_ATTRIBUTES,
+        ];
     }
 
     /**

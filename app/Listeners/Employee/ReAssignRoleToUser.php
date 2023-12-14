@@ -19,8 +19,8 @@ class ReAssignRoleToUser
      */
     public function handle(EmployeeUpdated $event): void
     {
-        $user = $event->getModel()->user;
+        //$user = $event->getModel()->user;
         $event->getModel()->syncRoles([$event->getModel()->role]);
-        $user->syncRoles([$event->getModel()->role]);
+        //$user->syncRoles([$event->getModel()->role]);
     }
 }

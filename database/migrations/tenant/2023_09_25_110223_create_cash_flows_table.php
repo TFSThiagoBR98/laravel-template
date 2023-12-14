@@ -31,14 +31,10 @@ return new class extends Migration
             $table->softDeletesTz(Model::ATTRIBUTE_DELETED_AT, 6);
 
             $table->foreignIdFor(User::class, Model::ATTRIBUTE_FK_OPEN_EMPLOYEE)
-                ->nullable()
-                ->constrained(User::TABLE, User::ATTRIBUTE_ID)
-                ->cascadeOnDelete();
+                ->nullable();
 
             $table->foreignIdFor(User::class, Model::ATTRIBUTE_FK_CLOSE_EMPLOYEE)
-                ->nullable()
-                ->constrained(User::TABLE, User::ATTRIBUTE_ID)
-                ->cascadeOnDelete();
+                ->nullable();
         });
 
         Schema::table(Payment::TABLE, function (Blueprint $table) {

@@ -23,6 +23,7 @@ return new class extends Migration
             $table->boolean('visible_to_client');
             $table->string('status')->default('enabled');
             $table->schemalessAttributes('extra_attributes');
+            $table->json('data')->nullable();
             $table->timestamps();
             $table->softDeletesTz();
         });

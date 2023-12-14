@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use OwenIt\Auditing\Auditable as HasAuditable;
 use OwenIt\Auditing\Contracts\Auditable;
 use Spatie\Permission\Models\Permission as SpatiePermission;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
 
 /**
  * App\Models\Permission
@@ -40,6 +41,7 @@ class Permission extends SpatiePermission implements Auditable
 {
     use HasFactory;
     use HasAuditable;
+    use CentralConnection;
 
     /**
      * The "type" of the primary key ID.
