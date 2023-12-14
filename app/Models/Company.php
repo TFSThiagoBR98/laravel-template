@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use Stancl\Tenancy\Contracts\TenantWithDatabase;
 use App\Enums;
 use App\Scopes\CompanyScope;
 use App\Scopes\UserScope;
@@ -11,6 +12,13 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\Auth;
+use Stancl\Tenancy\Database\Concerns\HasDatabase;
+use Stancl\Tenancy\Database\Concerns\HasDomains;
+use Stancl\Tenancy\Database\Concerns\CentralConnection;
+use Stancl\Tenancy\Database\Concerns\HasDataColumn;
+use Stancl\Tenancy\Database\Concerns\HasInternalKeys;
+use Stancl\Tenancy\Database\Concerns\TenantRun;
+use Stancl\Tenancy\Database\Concerns\InvalidatesResolverCache;
 
 /**
  * Model Company
@@ -50,8 +58,15 @@ use Illuminate\Support\Facades\Auth;
  * @mixin \Eloquent
  * @mixin IdeHelperCompany
  */
-class Company extends BaseModelMedia
+class Company extends BaseModelMedia implements TenantWithDatabase
 {
+    use HasDatabase;
+    use HasDomains;
+    use CentralConnection;
+    use HasInternalKeys;
+    use TenantRun;
+    use InvalidatesResolverCache;
+
     /**
      * The table associated with the model.
      */
@@ -110,6 +125,16 @@ class Company extends BaseModelMedia
         self::ATTRIBUTE_VISIBLE_TO_CLIENT => 'bool',
         self::ATTRIBUTE_STATUS => Enums\GenericStatus::class,
     ];
+
+    public function getTenantKeyName(): string
+    {
+        return 'id';
+    }
+
+    public function getTenantKey()
+    {
+        return $this->getAttribute($this->getTenantKeyName());
+    }
 
     /**
      * Return Employees

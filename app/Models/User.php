@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace App\Models;
 
-use App\Scopes\EmployeeScope;
-use App\Scopes\CompanyScope;
-use App\Scopes\UserScope;
-use App\Enums;
 use Carbon\Carbon;
+use Filament\Models\Contracts\HasTenants;
+use Filament\Panel;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Relations\HasManyThrough;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\Collection;
 
 /**
  * User model
@@ -51,7 +49,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @property-read int|null $permissions_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Role> $roles
  * @property-read int|null $roles_count
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \Joselfonseca\LighthouseGraphQLPassport\Models\SocialProvider> $socialProviders
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \TFSThiagoBR98\LighthouseGraphQLPassport\Models\SocialProvider> $socialProviders
  * @property-read int|null $social_providers_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \Laravel\Passport\Token> $tokens
  * @property-read int|null $tokens_count
@@ -94,7 +92,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
  * @mixin \Eloquent
  * @mixin IdeHelperUser
  */
-class User extends BaseModelMediaAuthenticatable
+class User extends BaseModelMediaAuthenticatable implements HasTenants
 {
     /**
      * The table associated with the model.
@@ -165,12 +163,22 @@ class User extends BaseModelMediaAuthenticatable
     public function employees(): HasMany
     {
         return $this->hasMany(Employee::class, self::FOREIGN_KEY, self::ATTRIBUTE_ID)
-            ->withoutGlobalScopes([CompanyScope::class, UserScope::class, EmployeeScope::class]);
+            ->withoutGlobalScopes(['company']);
     }
 
     public function companies(): BelongsToMany
     {
         return $this->belongsToMany(Company::class, Employee::TABLE, User::FOREIGN_KEY, Company::FOREIGN_KEY);
+    }
+
+    public function canAccessTenant(Model $tenant): bool
+    {
+        return $this->companies->contains($tenant);
+    }
+
+    public function getTenants(Panel $panel): Collection|array
+    {
+        return $this->companies;
     }
 
     /**
