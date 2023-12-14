@@ -153,19 +153,4 @@ class Employee extends BaseModelMedia implements CompanyOwned, UserOwned
             ->where(self::ATTRIBUTE_FK_USER, $userId)
             ->first();
     }
-
-    public function hasCompanyColumn(): bool
-    {
-        return Schema::hasColumn($this->getModel()->getTable(), $this->getCompanyColumnName());
-    }
-
-    /**
-     * Get company of model
-     *
-     * @return BelongsTo
-     */
-    public function company(): BelongsTo
-    {
-        return $this->belongsTo(Company::class, $this->getCompanyColumnName());
-    }
 }
